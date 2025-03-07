@@ -1,7 +1,7 @@
 module parse_release 
 contains
     function get_os() result(os_name)
-        character(len=256) :: line, key, value, os_name
+        character(len=15) :: line, key, value, os_name
         integer :: ios, eq_pos
         os_name = "Unknown"
 
@@ -39,10 +39,9 @@ contains
         close(10)
     end function get_os
     
-  function get_version() result(os_ver)
-        character(len=256) :: line, key, value
+  character function get_version() result(os_ver)
+        character(len=4) :: line, key, value
         integer :: ios, eq_pos
-        os_ver = "Unknown" 
 
         open(10, file="/etc/os-release", status="old", action="read", iostat=ios)
         if (ios /= 0) then
@@ -69,7 +68,7 @@ contains
                 end if
 
                 if (key == "VERSION") then
-                    os_name = value
+                    read(value, *) os_ver
                     exit
                 end if
             end if

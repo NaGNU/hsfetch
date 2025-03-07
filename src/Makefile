@@ -1,5 +1,5 @@
 FC = gfortran
-FLAGS = -Ofast -Wall
+FLAGS = -O0 -Wall
 OBJ = parse_release.o main.o
 
 rfetch: $(OBJ)
