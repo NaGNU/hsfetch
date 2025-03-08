@@ -1,9 +1,8 @@
 module Parse where
 
 import System.Process
-import System.Directory
 
-hostnameGet, kernelGet, getRAM, distroGet, pkgsNumGet :: IO String 
+hostnameGet, kernelGet, getRAM, distroGet :: IO String 
 
 hostnameGet = readProcess "hostname" [] ""
 
@@ -32,12 +31,3 @@ shellGet = readProcess "sh" ["-c", "echo $SHELL"] ""
 
 mailGet = readProcess "sh" ["-c", "echo $MAIL"] ""
 
-pkgmanagerGet = do
-    let managers  = [ ("/var/lib/dpkg/status", "dpkg (Debian-based)")
-                   , ("/var/lib/pacman/local/", "pacman (Arch-based)")
-                   , ("/var/lib/rpm/", "rpm (Fedora/RHEL-based)")
-                   , ("/var/log/packages/", "Slackware pkgtools")
-                   , ("/opt/homebrew/bin/brew", "Homebrew (MacOS)")
-                   ]
-    found <- filterM (doesFileExist . fst) managers
-	return $ if null found then "-" else snd $ head found
