@@ -6,6 +6,5 @@ x :: Int
 x = 3
 
 main = do
-	x <- getLine
 	print(f 2 x)
 
