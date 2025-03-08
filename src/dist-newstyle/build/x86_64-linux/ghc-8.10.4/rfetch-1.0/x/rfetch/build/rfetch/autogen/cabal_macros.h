@@ -10,16 +10,6 @@
   (major1) == 1 && (major2) <  0 || \
   (major1) == 1 && (major2) == 0 && (minor) <= 0)
 #endif /* MIN_VERSION_rfetch */
-/* package ansi-terminal-1.1.2 */
-#ifndef VERSION_ansi_terminal
-#define VERSION_ansi_terminal "1.1.2"
-#endif /* VERSION_ansi_terminal */
-#ifndef MIN_VERSION_ansi_terminal
-#define MIN_VERSION_ansi_terminal(major1,major2,minor) (\
-  (major1) <  1 || \
-  (major1) == 1 && (major2) <  1 || \
-  (major1) == 1 && (major2) == 1 && (minor) <= 2)
-#endif /* MIN_VERSION_ansi_terminal */
 /* package base-4.14.1.0 */
 #ifndef VERSION_base
 #define VERSION_base "4.14.1.0"
