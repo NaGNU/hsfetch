@@ -46,12 +46,12 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
-bindir     = "/home/ruzen42/.cabal/bin"
-libdir     = "/home/ruzen42/.cabal/lib/x86_64-linux-ghc-8.10.4/rfetch-1.0-inplace-rfetch"
-dynlibdir  = "/home/ruzen42/.cabal/lib/x86_64-linux-ghc-8.10.4"
-datadir    = "/home/ruzen42/.cabal/share/x86_64-linux-ghc-8.10.4/rfetch-1.0"
-libexecdir = "/home/ruzen42/.cabal/libexec/x86_64-linux-ghc-8.10.4/rfetch-1.0"
-sysconfdir = "/home/ruzen42/.cabal/etc"
+bindir     = "/root/.cabal/bin"
+libdir     = "/root/.cabal/lib/x86_64-linux-ghc-8.10.4/rfetch-1.0-inplace-rfetch"
+dynlibdir  = "/root/.cabal/lib/x86_64-linux-ghc-8.10.4"
+datadir    = "/root/.cabal/share/x86_64-linux-ghc-8.10.4/rfetch-1.0"
+libexecdir = "/root/.cabal/libexec/x86_64-linux-ghc-8.10.4/rfetch-1.0"
+sysconfdir = "/root/.cabal/etc"
 
 getBinDir     = catchIO (getEnv "rfetch_bindir")     (\_ -> return bindir)
 getLibDir     = catchIO (getEnv "rfetch_libdir")     (\_ -> return libdir)
