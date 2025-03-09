@@ -2,6 +2,7 @@ import System.Console.ANSI
 import Parse
 		
 asciiArt :: String
+
 asciiArt = unlines
   [ "      .--. ",
     "     |o_o | ",
@@ -14,30 +15,42 @@ asciiArt = unlines
 
 main :: IO ()
 main = do
-	kernel <- kernelGet
-	ram <- getRAM
-	distro <- distroGet
-	pkgs <- pkgsNumGet
-	shell <- shellGet
-	mail <- mailGet
+    kernel <- kernelGet
+    ram <- getRAM
+    distro <- distroGet
+    pkgs <- pkgsNumGet
+    shell <- shellGet
+    mail <- mailGet
+    let ver = "1.1"
 
-	putStr asciiArt
+    setSGR [SetColor Foreground Dull Blue]
 
-	putStr "OS: "
-	putStr distro 
+    putStr asciiArt
 
-	putStr "Packages: "
-	putStr pkgs
+    setSGR [SetColor Foreground Dull White]
 
-	putStr "Kernel: "
-	putStr kernel
+    putStrLn ""
 
-	putStr "Shell: "
-	putStr shell
+    putStr "OS: "
+    putStr distro 
+
+    putStr "Packages: "
+    putStr pkgs
+
+    putStr "Kernel: "
+    putStr kernel
+
+    putStr "Shell: "
+    putStr shell
 	
-	putStr "Mail: "
-	putStr mail
+    putStr "Mail: "
+    putStr mail
 
-	putStr "RAM: "
-	putStr ram
-	putStr "\n"
+    putStr "RAM: "
+    putStr ram
+
+    putStr "\n"
+
+    putStr "Rfetch: "
+    putStr ver
+    putStr "\n"

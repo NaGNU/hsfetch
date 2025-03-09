@@ -1,4 +1,4 @@
-FROM aclemons/slackware
+FROM fedora 
 WORKDIR /usr/bin
 COPY rfetch .
-CMD ["uname -a"]
+CMD ["rfetch"]
