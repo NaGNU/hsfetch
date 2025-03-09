@@ -28,6 +28,7 @@ main = do
 	putStr distro 
 
 	putStr "Packages: "
+	putStr pkgs
 
 	putStr "Kernel: "
 	putStr kernel

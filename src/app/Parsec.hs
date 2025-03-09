@@ -1,4 +1,4 @@
-module Parse where
+module Parsen where
 
 import System.Process
 
