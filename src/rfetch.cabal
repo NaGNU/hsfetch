@@ -55,7 +55,7 @@ extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
 common warnings
-    ghc-options: -Wall
+    ghc-options: -Wall 
 
 executable rfetch
     -- Import common warning flags.
@@ -75,6 +75,7 @@ executable rfetch
     build-depends:
         base >=4.14.1.0 && <4.15,
         process,
+        directory,
         ansi-terminal
 
     -- Directories containing source files.

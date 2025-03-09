@@ -1,8 +1,18 @@
 module Parse where
 
-import System.Process
+import System.Process (readProcess)
+import PkgManagers
 
 hostnameGet, kernelGet, getRAM, distroGet :: IO String 
+getListPkg :: String -> IO String
+
+getListPkg "apt" = readProcess "dpkg" ["--list"] ""
+getListPkg "dnf" = readProcess "dnf" ["list", "installed"] ""
+getListPkg "pacman" = readProcess "pacman" ["-Q"] ""
+getListPkg "zypper" = readProcess "zypper" ["se", "-i"] ""
+getListPkg "slackpkg" = readProcess "ls" ["/var/log/packages"] ""
+getListPkg "emerge" = readProcess "cat" ["/var/lib/portage/world"] ""
+getListPkg _ = return "-"
 
 hostnameGet = readProcess "hostname" [] ""
 
@@ -24,7 +34,8 @@ distroGet = do
     return $ filter (/= '\n') name ++ " " ++ filter (/= '\n') version ++ " " ++ versionCodename
 
 pkgsNumGet = do
-    output <- readProcess "ls" ["/var/log/packages"] ""
+    pkgManager <- checkPkgManager  	
+    output <- getListPkg pkgManager
     return $ show (length $ lines output) ++ "\n"
 
 shellGet = readProcess "sh" ["-c", "echo $SHELL"] ""

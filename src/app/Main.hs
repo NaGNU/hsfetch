@@ -1,7 +1,6 @@
-import System.Process
 import System.Console.ANSI
 import Parse
-
+		
 asciiArt :: String
 asciiArt = unlines
   [ "      .--. ",
