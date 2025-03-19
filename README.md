@@ -1,4 +1,6 @@
 # rfetch 
+![GitHub License](https://img.shields.io/github/license/ruzen42/rfetch?style=flat-square) ![GitHub repo size](https://img.shields.io/github/repo-size/ruzen42/rfetch?style=flat-square) ![GitHub Release](https://img.shields.io/github/v/release/ruzen42/rfetch?include_prereleases&sort=date&display_name=release&style=flat-square)
+
 rfetch is a lightweight and minimal system information fetch script for the terminal. It displays system details such as OS, kernel, uptime, packages, CPU, memory usage, and more. The goal is to keep it simple, fast, and easily customizable.
 
 Use: To run rfetch, simply execute rfetch in your terminal.
@@ -8,9 +10,14 @@ sudo install -m755 rfetch /usr/local/bin/rfetch
 
 How to build: rfetch is a shell script and does not require building.
 If you are modifying it, clone the repository:
-git clone https://github.com/yourusername/rfetch.git
-Make your changes, test by running ./rfetch, and optionally install it with:
+``` Bash
+git clone https://github.com/ruzen42/rfetch.git
+cd src
+cabal update
+cabal build
+# Make your changes, test by running ./rfetch, and optionally install it with:
 sudo install -m755 rfetch /usr/local/bin/rfetch
+```
 
 Contributing: Contributions are welcome.
 
