@@ -23,7 +23,7 @@ main = do
     mail <- mailGet
     let ver = "1.1"
 
-    setSGR [SetColor Foreground Dull Red]
+    setSGR [SetColor Foreground Dull Blue]
 
     putStr asciiArt
 
