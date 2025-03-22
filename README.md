@@ -1,5 +1,6 @@
 # rfetch 
-![GitHub License](https://img.shields.io/github/license/ruzen42/rfetch?style=flat-square) ![GitHub repo size](https://img.shields.io/github/repo-size/ruzen42/rfetch?style=flat-square) ![GitHub Release](https://img.shields.io/github/v/release/ruzen42/rfetch?include_prereleases&sort=date&display_name=release&style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/NaGNU/rfetch?style=flat-square)
+![GitHub Release](https://img.shields.io/github/v/release/NaGNU/rfetch?include_prereleases&sort=date&display_name=release&style=flat-square)
 
 rfetch is a lightweight and minimal system information fetch script for the terminal. It displays system details such as OS, kernel, uptime, packages, CPU, memory usage, and more. The goal is to keep it simple, fast, and easily customizable.
 
