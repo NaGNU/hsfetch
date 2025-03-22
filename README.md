@@ -1,6 +1,10 @@
 # rfetch 
-![GitHub repo size](https://img.shields.io/github/repo-size/NaGNU/rfetch?style=flat-square)
-![GitHub Release](https://img.shields.io/github/v/release/NaGNU/rfetch?include_prereleases&sort=date&display_name=release&style=flat-square)
+[haskell-shield]: https://img.shields.io/badge/Haskell-5e5086?style=for-the-badge&logo=haskell&logoColor=white
+[haskell-url]: https://www.haskell.org/
+
+[![Haskell][haskell-shield]][haskell-url]
+![GitHub repo size](https://img.shields.io/github/repo-size/NaGNU/rfetch?style=for-the-badge)
+![GitHub Release](https://img.shields.io/github/v/release/NaGNU/rfetch?include_prereleases&sort=date&display_name=release&style=for-the-badge)
 
 rfetch is a lightweight and minimal system information fetch script for the terminal. It displays system details such as OS, kernel, uptime, packages, CPU, memory usage, and more. The goal is to keep it simple, fast, and easily customizable.
 
@@ -33,3 +37,4 @@ You are free to use, modify, and distribute this software with or without change
 Disclaimer: This software is provided "as is", without warranty of any kind.
 The author is not responsible for any damage, loss, or issues caused by using this software.
 By using rfetch, you agree to use it at your own risk.
+
