@@ -16,10 +16,9 @@ sudo install -m755 rfetch /usr/local/bin/rfetch
 How to build: rfetch is a shell script and does not require building.
 If you are modifying it, clone the repository:
 ``` Bash
-git clone https://github.com/nagnu/rfetch.git
-cd src
-cabal update
-cabal build
+git clone https://github.com/NaGNU/rfetch.git
+cd rfetch
+make
 # Make your changes, test by running ./rfetch, and optionally install it with:
 sudo install -m755 rfetch /usr/local/bin/rfetch
 ```
