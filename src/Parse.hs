@@ -6,7 +6,7 @@ import Data.Char (isSpace)
 import Data.List (isPrefixOf, isInfixOf)		
 import System.Console.ANSI 
 
-hostnameGet, kernelGet, getRAM, distroGet, idGet, installDataGet  :: IO String 
+hostnameGet, kernelGet, getRAM, distroGet, idGet, installDataGet, duRootGet  :: IO String 
 getListPkg :: String -> IO String
 
 getListPkg "apt" = readProcess "dpkg" ["--list"] ""
@@ -72,3 +72,4 @@ installDataGet = do
 wordsBySpace :: String -> [String]
 wordsBySpace = words
 
+duRootGet = readProcess "du" ["/", "-ms"] "" 
