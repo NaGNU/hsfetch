@@ -4,6 +4,7 @@ import System.Process (readProcess)
 import PkgManagers
 import Data.Char (isSpace)
 import Data.List (isPrefixOf)		
+import System.Console.ANSI 
 
 hostnameGet, kernelGet, getRAM, distroGet, idGet :: IO String 
 getListPkg :: String -> IO String
@@ -47,4 +48,11 @@ cpuGet = do
     let modelNameLine = head (filter ("model name" `isPrefixOf`) (lines cpuInfo))  
     return $ dropWhile (/= ':') (dropWhile (/= ' ') modelNameLine) 
 
-idGet = readProcess "sh" ["-c", "/etc/os-release && echo $ID"] ""
+idGet = readProcess "sh" ["-c", ". /etc/os-release && echo $ID"] ""
+
+colorGet :: String -> (ColorIntensity, Color) 
+colorGet id = case id of
+    "slackware\n"  -> (Vivid, Blue) 
+    "ptu\n"        -> (Vivid, Red) 
+    "arch\n"       -> (Dull, Cyan) 
+    _              -> (Dull, White) 

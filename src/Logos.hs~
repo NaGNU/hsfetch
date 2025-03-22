@@ -26,20 +26,20 @@ printLogo :: IO ()
 printLogo = do
     distroId <- idGet
     case distroId of
-        "arch\n"      -> archLogo
-        "slackware\n" -> slackwareLogo
-        "void\n"      -> voidLogo
-        "nixos\n"     -> nixosLogo
-        "ubuntu\n"    -> ubuntuLogo
-        "fedora\n"    -> fedoraLogo
-        "gentoo\n"    -> gentooLogo
-        "alpine\n"    -> alpineLogo
-        "artix\n"     -> artixLogo
-        "kali\n"      -> kaliLogo
-        "parrot\n"    -> parrotLogo
-        "mint\n"      -> mintLogo
-        "pty\n:"   	-> ptyLogo
-        _           -> linuxLogo
+        "arch"      -> archLogo
+        "slackware" -> slackwareLogo
+        "void"      -> voidLogo
+        "nixos"     -> nixosLogo
+        "ubuntu"    -> ubuntuLogo
+        "fedora"    -> fedoraLogo
+        "gentoo"    -> gentooLogo
+        "alpine"    -> alpineLogo
+        "artix"     -> artixLogo
+        "kali"      -> kaliLogo
+        "parrot"    -> parrotLogo
+        "mint"      -> mintLogo
+        "pty"   	-> ptyLogo
+        _           -> slackwareLogo
 
 printLogoWithColor :: Color -> [String] -> IO ()
 printLogoWithColor color linesOfLogo = do

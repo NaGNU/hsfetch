@@ -1,8 +1,8 @@
-all: clean 
+all: 
 	cabal build
 
 clean:
 	cabal clean
 
-run: all
+run: 
 	cabal run

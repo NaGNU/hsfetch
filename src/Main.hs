@@ -10,53 +10,52 @@ main = do
     pkgs <- pkgsNumGet
     shell <- shellGet
     cpu <- cpuGet
-
+    idStr <- idGet
+    let (intensity, color) = colorGet idStr 
+    
     let ver = "1.2"
-
-    --setSGR [SetColor Foreground Vivid Blue]
 
     printLogo
 
-    setSGR [SetColor Foreground Vivid White]
-
     putStrLn ""
 
-    setSGR [SetColor Foreground Vivid Blue]
+    setSGR [SetColor Foreground intensity color]
     putStr "OS: "
-    setSGR [SetColor Foreground Vivid White]
+    setSGR [SetColor Foreground Dull White]
     putStr distro 
 
-    setSGR [SetColor Foreground Vivid Blue]
+    setSGR [SetColor Foreground intensity color]
     putStr "CPU: "
-    setSGR [SetColor Foreground Vivid White]
+    setSGR [SetColor Foreground Dull White]
     putStr cpu
 
     putStr "\n"
 
-    setSGR [SetColor Foreground Vivid Blue]
+    setSGR [SetColor Foreground intensity color]
     putStr "RAM: "
-    setSGR [SetColor Foreground Vivid White]
+    setSGR [SetColor Foreground Dull White]
     putStr ram
 
     putStr "\n"
 
-    setSGR [SetColor Foreground Vivid Blue]
+    setSGR [SetColor Foreground intensity color]
     putStr "Packages: "
-    setSGR [SetColor Foreground Vivid White]
+    setSGR [SetColor Foreground Dull White]
     putStr pkgs
 
-    setSGR [SetColor Foreground Vivid Blue]
+    setSGR [SetColor Foreground intensity color]
     putStr "Kernel: "
-    setSGR [SetColor Foreground Vivid White]
+    setSGR [SetColor Foreground Dull White]
     putStr kernel
 
-    setSGR [SetColor Foreground Vivid Blue]
+    setSGR [SetColor Foreground intensity color]
     putStr "Shell: "
-    setSGR [SetColor Foreground Vivid White]
+    setSGR [SetColor Foreground Dull White]
     putStr shell
 	
-    setSGR [SetColor Foreground Vivid Blue]
+    setSGR [SetColor Foreground intensity color]
     putStr "Rfetch: "
-    setSGR [SetColor Foreground Vivid White]
+    setSGR [SetColor Foreground Dull White]
     putStr ver
     putStr "\n"
+
