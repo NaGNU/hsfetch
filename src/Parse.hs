@@ -3,17 +3,17 @@ module Parse where
 import System.Process (readProcess)
 import PkgManagers
 import Data.Char (isSpace)
-import Data.List (isPrefixOf)		
+import Data.List (isPrefixOf, isInfixOf)		
 import System.Console.ANSI 
 
-hostnameGet, kernelGet, getRAM, distroGet, idGet :: IO String 
+hostnameGet, kernelGet, getRAM, distroGet, idGet, installDataGet  :: IO String 
 getListPkg :: String -> IO String
 
 getListPkg "apt" = readProcess "dpkg" ["--list"] ""
 getListPkg "dnf" = readProcess "dnf" ["list", "installed"] ""
 getListPkg "pacman" = readProcess "pacman" ["-Q"] ""
 getListPkg "zypper" = readProcess "zypper" ["se", "-i"] ""
-getListPkg "slackpkg" = readProcess "sh" ["-c", "ls /var/log/packages | wc -l"] ""
+getListPkg "slackpkg" = readProcess "yes" [""] ""
 getListPkg "emerge" = readProcess "cat" ["/var/lib/portage/world"] ""
 getListPkg _ = return "-"
 
@@ -46,7 +46,7 @@ shellGet = readProcess "sh" ["-c", "echo $SHELL"] ""
 cpuGet = do
     cpuInfo <- readFile "/proc/cpuinfo"  
     let modelNameLine = head (filter ("model name" `isPrefixOf`) (lines cpuInfo))  
-    return $ dropWhile (/= ':') (dropWhile (/= ' ') modelNameLine) 
+    return $ drop 2 (dropWhile (/= ':') modelNameLine)
 
 idGet = readProcess "sh" ["-c", ". /etc/os-release && echo $ID"] ""
 
@@ -55,4 +55,20 @@ colorGet id = case id of
     "slackware\n"  -> (Vivid, Blue) 
     "ptu\n"        -> (Vivid, Red) 
     "arch\n"       -> (Dull, Cyan) 
+    "fedora\n"     -> (Vivid, Blue)
+    "void\n"       -> (Vivid, Green)
+    "artix\n"      -> (Dull, Cyan)
+    "mint\n"       -> (Dull, Green)
+    "debian\n"     -> (Vivid, Red)
+    "ubuntu\n"     -> (Vivid, Yellow)
     _              -> (Dull, White) 
+
+installDataGet = do
+    versionInfo <- readFile "/proc/version"
+    let afterPreempt = dropWhile (not . isPrefixOf "PREEMPT_DYNAMIC") (wordsBySpace versionInfo)
+        dateWords = drop 1 afterPreempt
+    return $ unwords $ take 6 dateWords
+
+wordsBySpace :: String -> [String]
+wordsBySpace = words
+

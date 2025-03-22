@@ -11,6 +11,8 @@ main = do
     shell <- shellGet
     cpu <- cpuGet
     idStr <- idGet
+    installDate <- installDataGet
+
     let (intensity, color) = colorGet idStr 
     
     let ver = "1.2"
@@ -43,6 +45,12 @@ main = do
     setSGR [SetColor Foreground Dull White]
     putStr pkgs
 
+    setSGR [SetColor Foreground intensity color]
+    putStr "Install Date: "
+    setSGR [SetColor Foreground Dull White]
+    putStr installDate
+
+    putStr "\n"
     setSGR [SetColor Foreground intensity color]
     putStr "Kernel: "
     setSGR [SetColor Foreground Dull White]

@@ -1,5 +1,5 @@
 all: 
-	cabal build
+	cabal build >> /dev/null
 
 clean:
 	cabal clean

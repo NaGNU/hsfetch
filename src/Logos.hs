@@ -38,7 +38,7 @@ printLogo = do
         "kali\n"      -> kaliLogo
         "parrot\n"    -> parrotLogo
         "mint\n"      -> mintLogo
-        "pty\n:"   	-> ptyLogo
+        "ptu\n"   	-> ptyLogo
         _           -> linuxLogo
 
 printLogoWithColor :: Color -> [String] -> IO ()
@@ -60,7 +60,8 @@ linuxLogo = printLogoWithColor White
 
 ptyLogo :: IO ()
 ptyLogo = printLogoWithColor Red
-    ["88\"\"Yb 888888 88   88    dP  dP\"Yb  .dP\"Y8"
+    [""
+    ,"88\"\"Yb 888888 88   88    dP  dP\"Yb  .dP\"Y8"
     ,"88__dP   88   88   88   dP  dP   Yb  Ybo."
     ,"88\"\"\"    88   Y8   8P  dP   Yb   dP o.`Y8b" 
     ,"88       88   `YbodP' dP     YbodP  8bodP'"
@@ -129,7 +130,7 @@ alpineLogo = printLogoWithColor Cyan
   ]
 
 ubuntuLogo :: IO ()
-ubuntuLogo = printLogoWithColor Red
+ubuntuLogo = printLogoWithColor Yellow
   [ "   .--.   "
   , "  |o_o |  "
   , "  |:_/ |  "
