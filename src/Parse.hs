@@ -4,9 +4,10 @@ import System.Process (readProcess)
 import PkgManagers
 import Data.Char (isSpace)
 import Data.List (isPrefixOf, isInfixOf)		
-import System.Console.ANSI 
+import System.Console.ANSI
+import Text.Printf (printf)
 
-hostnameGet, kernelGet, getRAM, distroGet, idGet, installDataGet, duRootGet  :: IO String 
+hostnameGet, kernelGet, getRAM, distroGet, idGet, installDataGet, uptimeGet :: IO String 
 getListPkg :: String -> IO String
 
 getListPkg "apt" = return "422" -- readProcess "dpkg" ["--list"] ""
@@ -74,4 +75,12 @@ installDataGet = do
 wordsBySpace :: String -> [String]
 wordsBySpace = words
 
-duRootGet = readProcess "du" ["/", "-ms"] "" 
+uptimeGet = do
+    uptimeStr <- readFile "/proc/uptime"
+    let uptimeSeconds = read (head (words uptimeStr)) :: Double
+        totalSeconds = floor uptimeSeconds :: Int
+        (days, remainder) = totalSeconds `divMod` (60 * 60 * 24)
+        (hours, remainder2) = remainder `divMod` (60 * 60)
+        (minutes, _) = remainder2 `divMod` 60
+    return $ printf "%d days, %02d hours, %02d minutes" days hours minutes
+

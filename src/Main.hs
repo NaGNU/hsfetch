@@ -12,6 +12,7 @@ main = do
     cpu <- cpuGet
     idStr <- idGet
     installDate <- installDataGet
+    uptime <- uptimeGet
 
     let (intensity, color) = colorGet idStr 
     
@@ -29,17 +30,20 @@ main = do
     setSGR [SetColor Foreground intensity color]
     putStr "CPU: "
     setSGR [SetColor Foreground Dull White]
-    putStr cpu
+    putStrLn cpu
 
-    putStr "\n"
 
     setSGR [SetColor Foreground intensity color]
     putStr "RAM: "
     setSGR [SetColor Foreground Dull White]
-    putStr ram
+    putStrLn ram
 
-    putStr "\n"
 
+    setSGR [SetColor Foreground intensity color]
+    putStr "RAM: "
+    setSGR [SetColor Foreground Dull White]
+    putStrLn uptime
+    
     setSGR [SetColor Foreground intensity color]
     putStr "Packages: "
     setSGR [SetColor Foreground Dull White]
@@ -48,9 +52,8 @@ main = do
     setSGR [SetColor Foreground intensity color]
     putStr "Install Date: "
     setSGR [SetColor Foreground Dull White]
-    putStr installDate
+    putStrLn installDate
 
-    putStr "\n"
     setSGR [SetColor Foreground intensity color]
     putStr "Kernel: "
     setSGR [SetColor Foreground Dull White]
@@ -64,6 +67,5 @@ main = do
     setSGR [SetColor Foreground intensity color]
     putStr "Rfetch: "
     setSGR [SetColor Foreground Dull White]
-    putStr ver
-    putStr "\n"
+    putStrLn ver
 
