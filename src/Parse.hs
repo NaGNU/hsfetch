@@ -9,11 +9,11 @@ import System.Console.ANSI
 hostnameGet, kernelGet, getRAM, distroGet, idGet, installDataGet, duRootGet  :: IO String 
 getListPkg :: String -> IO String
 
-getListPkg "apt" = readProcess "dpkg" ["--list"] ""
-getListPkg "dnf" = readProcess "dnf" ["list", "installed"] ""
-getListPkg "pacman" = readProcess "pacman" ["-Q"] ""
-getListPkg "zypper" = readProcess "zypper" ["se", "-i"] ""
-getListPkg "slackpkg" = readProcess "yes" [""] ""
+getListPkg "apt" = return "422" -- readProcess "dpkg" ["--list"] ""
+getListPkg "dnf" = return "422" --  readProcess "dnf" ["list", "installed"] ""
+getListPkg "pacman" = return "422"-- readProcess "pacman" ["-Q"] ""
+getListPkg "zypper" = return "422"-- readProcess "zypper" ["se", "-i"] ""
+getListPkg "slackpkg" = readProcess "ls" ["/var/log/packages"] ""
 getListPkg "emerge" = readProcess "cat" ["/var/lib/portage/world"] ""
 getListPkg _ = return "-"
 
@@ -39,7 +39,9 @@ distroGet = do
 pkgsNumGet = do
     pkgManager <- checkPkgManager  	
     output <- getListPkg pkgManager
-    return $ show (length $ lines output) ++ "\n"
+    if output == "-"
+    then return "-"
+    else return $ show (length $ lines output) ++ "\n"
 
 shellGet = readProcess "sh" ["-c", "echo $SHELL"] ""
 

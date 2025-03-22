@@ -11,7 +11,7 @@ checkPkgManager = do
     dnf <- findExecutable "dnf"
     pacman <- findExecutable "pacman"
     zypper <- findExecutable "zypper"
-    slackpkg <- findExecutable "slackpkg"
+    slackpkg <- findExecutable "/usr/sbin/slackpkg"
     emerge <- findExecutable "emerge"
 
     return $ case () of 
