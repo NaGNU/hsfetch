@@ -2,6 +2,8 @@ module Parse where
 
 import System.Process (readProcess)
 import PkgManagers
+import Data.Char (isSpace)
+import Data.List (isPrefixOf)		
 
 hostnameGet, kernelGet, getRAM, distroGet :: IO String 
 getListPkg :: String -> IO String
@@ -10,7 +12,7 @@ getListPkg "apt" = readProcess "dpkg" ["--list"] ""
 getListPkg "dnf" = readProcess "dnf" ["list", "installed"] ""
 getListPkg "pacman" = readProcess "pacman" ["-Q"] ""
 getListPkg "zypper" = readProcess "zypper" ["se", "-i"] ""
-getListPkg "slackpkg" = readProcess "ls" ["/var/log/packages"] ""
+getListPkg "slackpkg" = readProcess "sh" ["-c", "ls /var/log/packages | wc -l"] ""
 getListPkg "emerge" = readProcess "cat" ["/var/lib/portage/world"] ""
 getListPkg _ = return "-"
 
@@ -40,6 +42,8 @@ pkgsNumGet = do
 
 shellGet = readProcess "sh" ["-c", "echo $SHELL"] ""
 
-mailGet = readProcess "sh" ["-c", "echo $MAIL"] ""
-
+cpuGet = do
+    cpuInfo <- readFile "/proc/cpuinfo"  
+    let modelNameLine = head (filter ("model name" `isPrefixOf`) (lines cpuInfo))  
+    return $ dropWhile (/= ':') (dropWhile (/= ' ') modelNameLine) 
 
