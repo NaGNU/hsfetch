@@ -1,4 +1,4 @@
-module Rfetch.Logos 
+module Logos 
   ( archLogo
   , debianLogo
   , slackwareLogo
@@ -14,70 +14,113 @@ module Rfetch.Logos
   , parrotLogo
   , endeavourLogo
   , mintLogo
+  , linuxLogo
+  , printLogoWithColor
+  , printLogo
   ) where
 
-archLogo :: String
-archLogo = unlines
-  [ "      /\\  "
-  , "     /  \\" 
-  , "    / /\\ \\" 
-  , "   / ____ \\" 
-  , "  /_/    \\_\\" 
+import Parse
+import System.Console.ANSI
+
+printLogo :: IO ()
+printLogo = do
+    distroId <- idGet
+    case distroId of
+        "arch"      -> archLogo
+        "slackware" -> slackwareLogo
+        "void"      -> voidLogo
+        "nixos"     -> nixosLogo
+        "ubuntu"    -> ubuntuLogo
+        "fedora"    -> fedoraLogo
+        "gentoo"    -> gentooLogo
+        "alpine"    -> alpineLogo
+        "artix"     -> artixLogo
+        "kali"      -> kaliLogo
+        "parrot"    -> parrotLogo
+        "mint"      -> mintLogo
+        _           -> linuxLogo
+
+printLogoWithColor :: Color -> [String] -> IO ()
+printLogoWithColor color linesOfLogo = do
+  setSGR [SetColor Foreground Dull color]
+  mapM_ putStrLn linesOfLogo
+  setSGR [Reset]
+
+linuxLogo :: IO ()
+linuxLogo = printLogoWithColor White
+  [ "        .--."
+  , "       |o_o |"
+  , "       |:_/ |"
+  , "      //   \\\\"
+  , "     (|     | )"
+  , "    /'\\_   _/`\\"
+  , "    \\___)=(___/"
   ]
 
-debianLogo :: String
-debianLogo = unlines
+archLogo :: IO ()
+archLogo = printLogoWithColor Cyan
+    ["__________                    .__      "
+    ,"\\ ______   \\ _____      ____   |  |__   "  
+    ," |       _/ \\ __  \\   _/ ___\\  |  |  \\  "
+    ," |    |   \\  / __ \\ _ \\  \\___  |   Y  \\ "
+    ," |____|_  / (____  /  \\___  > |___|  / "
+    ,"        \\/       \\/       \\/       \\/  "
+    ]
+
+debianLogo :: IO ()
+debianLogo = printLogoWithColor Red
   [ "      _____ "
-  , "     /  __ \\\"
-  , "    |  /    \\\"
+  , "     /  __ \\\\"
+  , "    |  /    \\\\"
   , "     \\_\\____/ "
   , "        \\_/    "
   ]
 
-slackwareLogo :: String
-slackwareLogo = unlines
-  [ "    ________ "
-  , "   / ____  /"
-  , "  / / __/ / "
-  , " / /_/ /_/  "
-  , "/________/  "
+slackwareLogo :: IO ()
+slackwareLogo = printLogoWithColor Blue
+  [ " _____                  _            "
+  , "/  ___|                | |           "
+  , "\\ `--.   _ __    __ _  | | __   __ _ "
+  , " `--. \\ | '__|  / _` | | |/ /  / _` |"
+  , "/\\__/ / | |    | (_| | |   <  | (_| |"
+  , "\\____/  |_|     \\__,_| |_|\\_\\  \\__,_|"
   ]
 
-fedoraLogo :: String
-fedoraLogo = unlines
+fedoraLogo :: IO ()
+fedoraLogo = printLogoWithColor Blue
   [ "    _______ "
   , "   /  ___/ "
   , "  /  /__   "
   , " /_____/   "
   ]
 
-gentooLogo :: String
-gentooLogo = unlines
+gentooLogo :: IO ()
+gentooLogo = printLogoWithColor Magenta
   [ "   ___     "
   , "  / __\\  "
   , " / /  \\" 
   , " \\_\\__/  "
   ]
 
-voidLogo :: String
-voidLogo = unlines
+voidLogo :: IO ()
+voidLogo = printLogoWithColor Green
   [ "   __     "
   , "  /  \\" 
   , " |  ()  |"
   , "  \\__/ "
   ]
 
-alpineLogo :: String
-alpineLogo = unlines
+alpineLogo :: IO ()
+alpineLogo = printLogoWithColor Cyan
   [ "     /\\   "
   , "    /  \\" 
   , "   / /\\ \\" 
   , "  / /__\\ \\" 
-  , " /_/    \\_\\" 
+  , " /_/    \\_\\"
   ]
 
-ubuntuLogo :: String
-ubuntuLogo = unlines
+ubuntuLogo :: IO ()
+ubuntuLogo = printLogoWithColor Red
   [ "   .--.   "
   , "  |o_o |  "
   , "  |:_/ |  "
@@ -86,8 +129,8 @@ ubuntuLogo = unlines
   , " \\_\\_//_  "
   ]
 
-opensuseLogo :: String
-opensuseLogo = unlines
+opensuseLogo :: IO ()
+opensuseLogo = printLogoWithColor Green
   [ "    .----.   "
   , "   / .==.\\  "
   , "  / /    \\" 
@@ -95,25 +138,25 @@ opensuseLogo = unlines
   , "   \\_____/  "
   ]
 
-artixLogo :: String
-artixLogo = unlines
+artixLogo :: IO ()
+artixLogo = printLogoWithColor Cyan
   [ "     /\\   "
   , "    /  \\" 
   , "   / /\\ \\" 
   , "  / ____ \\" 
-  , " /_/    \\_\\" 
+  , " /_/    \\_\\"
   ]
 
-kaliLogo :: String
-kaliLogo = unlines
+kaliLogo :: IO ()
+kaliLogo = printLogoWithColor Blue
   [ "     (\\  "
   , "      )) "
   , "     //  "
   , "   ==\\=  "
   ]
 
-nixosLogo :: String
-nixosLogo = unlines
+nixosLogo :: IO ()
+nixosLogo = printLogoWithColor Blue
   [ "   \\ \\   / / "
   , "    \\ \\_/ /  "
   , "     \\___/   "
@@ -122,29 +165,28 @@ nixosLogo = unlines
   , "  /_/     \\" 
   ]
 
-parrotLogo :: String
-parrotLogo = unlines
+parrotLogo :: IO ()
+parrotLogo = printLogoWithColor Yellow
   [ "   ( \\" 
   , "    ) ) "
   , "   ( (  "
   , "    )_) "
   ]
 
-endeavourLogo :: String
-endeavourLogo = unlines
+endeavourLogo :: IO ()
+endeavourLogo = printLogoWithColor Magenta
   [ "     /\\   "
   , "    /  \\" 
   , "   / /\\ \\" 
   , "  / ____ \\" 
-  , " /_/    \\_\\" 
+  , " /_/    \\_\\"
   ]
 
-mintLogo :: String
-mintLogo = unlines
+mintLogo :: IO ()
+mintLogo = printLogoWithColor Green
   [ "   _____   "
   , "  |  __ \\" 
   , "  | |__) | "
   , "  |  ___/  "
   , "  |_|      "
   ]
-

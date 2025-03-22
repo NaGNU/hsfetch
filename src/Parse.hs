@@ -5,7 +5,7 @@ import PkgManagers
 import Data.Char (isSpace)
 import Data.List (isPrefixOf)		
 
-hostnameGet, kernelGet, getRAM, distroGet :: IO String 
+hostnameGet, kernelGet, getRAM, distroGet, idGet :: IO String 
 getListPkg :: String -> IO String
 
 getListPkg "apt" = readProcess "dpkg" ["--list"] ""
@@ -47,3 +47,4 @@ cpuGet = do
     let modelNameLine = head (filter ("model name" `isPrefixOf`) (lines cpuInfo))  
     return $ dropWhile (/= ':') (dropWhile (/= ' ') modelNameLine) 
 
+idGet = readProcess "sh" ["-c", "/etc/os-release && echo $ID"] ""

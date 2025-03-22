@@ -1,17 +1,6 @@
 import System.Console.ANSI
 import Parse
-
-asciiArt :: String
-
-asciiArt = unlines
-  [ "      .--. ",
-    "     |o_o | ",
-    "     |:_/ | ",
-    "    //   \\ \\  ",
-    "   (|     | ) ",
-    "  /'\\_   _/`\\ ",
-    "  \\___)=(___/"
-  ]
+import Logos
 
 main :: IO ()
 main = do
@@ -26,7 +15,7 @@ main = do
 
     --setSGR [SetColor Foreground Vivid Blue]
 
-    putStr asciiArt
+    printLogo
 
     setSGR [SetColor Foreground Vivid White]
 
