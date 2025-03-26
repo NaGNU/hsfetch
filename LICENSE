@@ -1,29 +1,38 @@
-The NaGNU General Public License (NaGNU GPL)  
-Version 1, March 2025
+NaGNU Common License v2.0 “Velvetgrace”
+(For folks who love sharing, not hiding code under the carpet)
 
-Preamble  
-This License guarantees freedom to use, study, modify, and share software—*but only if you pass those freedoms on*. Keep it open, or don’t touch it.  
+1. Introduction
+Hey there! If you’re reading this, you wanna use our software. Cool! But let’s keep it fair, like in 9th-grade law class when the teacher gave you a 10 for sneak-peeking at your neighbor’s test (just kidding!). Rules are simple: take, tweak, share—but don’t be greedy.
 
----  
+2. Your Rights (kinda like the Constitution, but easier):
 
-Terms  
+    Copy as much as you want. A thousand USB sticks? A cloud full? Go nuts.
 
-0. Basics  
-- You: Any entity (human, robot, or sentient kitchen appliance).  
-- Program: Code licensed under NaGNU GPL.  
-- Modify: Any change or derivative work.  
+    See how it works. Source code is yours, like an open diary after graduation.
 
-1. Share Alike  
-Distribute the Program? You must:  
-- Include this License and copyright notices.  
-- Provide *source code* (no excuses).  
-- License derivatives under NaGNU GPL.  
+    Change the code however you like. Add pink ponies or a dark mode—your call.
 
-2. No Warranty  
-This software comes with absolutely no warranty. If it breaks your toaster, that’s on you.  
+    Share with everyone. Friends, enemies, your grandma in the village—free or for cookies.
 
-3. Termination  
-Break these terms? Your rights vanish. Poof.  
+3. Your Duties (don’t panic, it’s short):
 
----  
-*Be decent. Keep code free.*
+    If you share a modified version—keep the code open. Like in the cafeteria: took a juice—return the cup. Hide the code? License is canceled, and we’ll be sad.
+
+    Don’t add extra rules. No “pay $100” or “only for blondes.” Freedom is for everyone!
+
+    Keep this license. Even if your project is now about AI for cats.
+
+4. Warranty (or lack of it):
+This software might crash, delete your homework, or summon aliens. We aren’t responsible for anything. Use it? Then you agree it’s your fault (kidding… maybe).
+
+5. How to Add This License to Your Project:
+Just put in README something like:
+“This app is protected by NaGNU v2.0. Wanna copy it? Read the license, or else there might be a secret clause about Martians!”
+
+6. If You Break the Rules:
+All your rights vanish, like BBQ without skewers. You’ll have to apologize to the community and sing the NaGNU anthem (we’re still working on the lyrics!).
+
+P.S. This license was written by someone who thought “copyleft” was the left Ctrl key. Found mistakes? Tell us—we’ll fix them at the next Open Source fan meetup!
+
+Freedom, Brotherhood, Code!
+© NaGNU, 2025
