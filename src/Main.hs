@@ -23,7 +23,7 @@ main = do
 
     let (intensity, color) = colorGet idStr 
     
-    let ver = "1.3"
+    let ver = "1.2.1"
 
     printLogo
 
