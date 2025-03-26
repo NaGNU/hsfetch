@@ -1,3 +1,10 @@
+--  __________   _____           __           .__     
+--  \______   \_/ ____\  ____  _/  |_   ____  |  |__  
+--   |       _/\   __\ _/ __ \ \   __\_/ ___\ |  |  \ 
+--   |    |   \ |  |   \  ___/  |  |  \  \___ |   Y  \
+--   |____|_  / |__|    \___  > |__|   \___  >|___|  /
+--          \/              \/             \/      \/ 
+--
 import System.Console.ANSI
 import Parse
 import Logos
@@ -16,7 +23,7 @@ main = do
 
     let (intensity, color) = colorGet idStr 
     
-    let ver = "1.2"
+    let ver = "1.3"
 
     printLogo
 
@@ -40,7 +47,7 @@ main = do
 
 
     setSGR [SetColor Foreground intensity color]
-    putStr "RAM: "
+    putStr "UPTIME: "
     setSGR [SetColor Foreground Dull White]
     putStrLn uptime
     
