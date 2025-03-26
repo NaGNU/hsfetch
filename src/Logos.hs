@@ -45,12 +45,12 @@ printLogo = do
         "kali\n"      -> kaliLogo
         "parrot\n"    -> parrotLogo
         "mint\n"      -> mintLogo
-        "ptu\n"   	-> ptyLogo
-        _           -> linuxLogo
+        "ptu\n"       -> ptyLogo
+        _             -> linuxLogo
 
 printLogoWithColor :: Color -> [String] -> IO ()
 printLogoWithColor color linesOfLogo = do
-  setSGR [SetColor Foreground Dull color]
+  setSGR [SetColor Foreground Vivid color]
   mapM_ putStrLn linesOfLogo
   setSGR [Reset]
 
@@ -76,12 +76,12 @@ ptyLogo = printLogoWithColor Red
 
 archLogo :: IO ()
 archLogo = printLogoWithColor Cyan
-    ["__________                    .__      "
-    ,"\\ ______   \\ _____      ____   |  |__   "  
-    ," |       _/ \\ __  \\   _/ ___\\  |  |  \\  "
-    ," |    |   \\  / __ \\ _ \\  \\___  |   Y  \\ "
-    ," |____|_  / (____  /  \\___  > |___|  / "
-    ,"        \\/       \\/       \\/       \\/  "
+    ["__________                     .__      "
+    ,"\\ ______  \\  _____      ____   |  |__   "  
+    ," |       _/  \\ __ \\   _/ ___\\  |  |  \\  "
+    ," |    |   \\  / __ \\_  \\  \\___  |   Y  \\ "
+    ," |____|_  / (____  /   \\___  > |___|  / "
+    ,"        \\/       \\/        \\/       \\/  "
     ]
 
 debianLogo :: IO ()
@@ -95,20 +95,21 @@ debianLogo = printLogoWithColor Red
 
 slackwareLogo :: IO ()
 slackwareLogo = printLogoWithColor Blue
-  [ " _____                  _            "
-  , "/  ___|                | |           "
-  , "\\ `--.   _ __    __ _  | | __   __ _ "
-  , " `--. \\ | '__|  / _` | | |/ /  / _` |"
-  , "/\\__/ / | |    | (_| | |   <  | (_| |"
-  , "\\____/  |_|     \\__,_| |_|\\_\\  \\__,_|"
+  ["  _________.__                    __     __      __                         "
+  ," /   _____/|  |  _____     ____  |  | __/  \\    /  \\_____   _______   ____  "
+  ," \\_____  \\ |  |  \\__  \\  _/ ___\\ |  |/ /\\   \\/\\/   /\\__  \\  \\_  __ \\_/ __ \\ "
+  ," /        \\|  |__ / __ \\_\\  \\___ |    <  \\        /  / __ \\_ |  | \\/\\  ___/ "
+  ,"/_______  /|____/(____  / \\___  >|__|_ \\  \\__/\\  /  (____  / |__|    \\___  >"
+  ,"        \\/            \\/      \\/      \\/       \\/        \\/              \\/ "
   ]
 
 fedoraLogo :: IO ()
 fedoraLogo = printLogoWithColor Blue
-  [ "    _______ "
-  , "   /  ___/ "
-  , "  /  /__   "
-  , " /_____/   "
+  [ "    ______         __                "
+  , "   / ____/__  ____/ /___  _________ _"
+  , "  / /_  / _ \\/ __  / __ \\/ ___/ __ `/"
+  , " / __/ /  __/ /_/ / /_/ / /  / /_/ / "
+  , "/_/    \\___/\\__,_/\\____/_/   \\__,_/  "
   ]
 
 gentooLogo :: IO ()

@@ -1,8 +1,17 @@
+HS=cabal
+
 all: 
-	cabal build >> /dev/null
+	@echo "Build rfetch..."
+	@$(HS) build 
 
 clean:
-	cabal clean
+	@echo "Clean..."
+	@$(HS) clean
 
 run: 
-	cabal run
+	@echo "Run rfetch..."
+	@$(HS) run
+
+rebuild:
+	@make clean
+	@make 

@@ -47,10 +47,15 @@ main = do
 
 
     setSGR [SetColor Foreground intensity color]
-    putStr "UPTIME: "
+    putStr "Uptime: "
     setSGR [SetColor Foreground Dull White]
     putStrLn uptime
     
+    setSGR [SetColor Foreground intensity color]
+    putStr "Window Manager: "
+    setSGR [SetColor Foreground Dull White]
+    wmGet >>= putStrLn
+
     setSGR [SetColor Foreground intensity color]
     putStr "Packages: "
     setSGR [SetColor Foreground Dull White]
@@ -71,6 +76,7 @@ main = do
     setSGR [SetColor Foreground Dull White]
     putStr shell
 	
+
     setSGR [SetColor Foreground intensity color]
     putStr "Rfetch: "
     setSGR [SetColor Foreground Dull White]

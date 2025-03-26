@@ -67,6 +67,7 @@ colorGet id = case id of
     "arch\n"       -> (Dull, Cyan) 
     "fedora\n"     -> (Vivid, Blue)
     "void\n"       -> (Vivid, Green)
+    "gentoo\n"     -> (Vivid, Magenta)
     "artix\n"      -> (Dull, Cyan)
     "mint\n"       -> (Dull, Green)
     "debian\n"     -> (Vivid, Red)
@@ -90,4 +91,17 @@ uptimeGet = do
         (hours, remainder2) = remainder `divMod` (60 * 60)
         (minutes, _) = remainder2 `divMod` 60
     return $ printf "%d days, %02d hours, %02d minutes" days hours minutes
+
+
+trim :: String -> String
+trim = f . f
+  where f = reverse . dropWhile isSpace
+
+wmGet:: IO String
+wmGet = do
+  wm <- readProcess "sh" ["-c", "xprop -root _NET_SUPPORTING_WM_CHECK | grep -oE '0x[0-9a-f]+' | xargs -I{} xprop -id {} _NET_WM_NAME | awk -F'\"' '{print $2}'"] ""
+  let result = trim wm
+  if null result
+    then return "unknown"
+    else return result
 
