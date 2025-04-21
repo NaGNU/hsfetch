@@ -46,6 +46,7 @@ printLogo = do
         "parrot\n"    -> parrotLogo
         "mint\n"      -> mintLogo
         "ptu\n"       -> ptyLogo
+        "buildx\n"    -> buildXLogo
         _             -> linuxLogo
 
 printLogoWithColor :: Color -> [String] -> IO ()
@@ -73,6 +74,19 @@ ptyLogo = printLogoWithColor Red
     ,"88\"\"\"    88   Y8   8P  dP   Yb   dP o.`Y8b" 
     ,"88       88   `YbodP' dP     YbodP  8bodP'"
     ]
+
+buildXLogo = printLogoWithColor Cyan
+    [""
+    ,"$$$$$$$\\            $$\\ $$\\       $$\\ $$\\   $$\\" 
+    ,"$$  __$$\\           \\__|$$ |      $$ |$$ |  $$ |"
+    ,"$$ |  $$ |$$\\   $$\\ $$\\ $$ | $$$$$$$ |\\$$\\ $$  |"
+    ,"$$$$$$$\\ |$$ |  $$ |$$ |$$ |$$  __$$ | \\$$$$  /" 
+    ,"$$  __$$\\ $$ |  $$ |$$ |$$ |$$ /  $$ | $$  $$< " 
+    ,"$$ |  $$ |$$ |  $$ |$$ |$$ |$$ |  $$ |$$  /\\$$\\ "
+    ,"$$$$$$$  |\\$$$$$$  |$$ |$$ |\\$$$$$$$ |$$ /  $$ |"
+    ,"\\_______/  \\______/ \\__|\\__| \\_______|\\__|  \\__|"
+    ]
+
 
 archLogo :: IO ()
 archLogo = printLogoWithColor Cyan

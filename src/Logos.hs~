@@ -1,3 +1,10 @@
+--  __________   _____           __           .__     
+--  \______   \_/ ____\  ____  _/  |_   ____  |  |__  
+--   |       _/\   __\ _/ __ \ \   __\_/ ___\ |  |  \ 
+--   |    |   \ |  |   \  ___/  |  |  \  \___ |   Y  \
+--   |____|_  / |__|    \___  > |__|   \___  >|___|  /
+--          \/              \/             \/      \/ 
+--          
 module Logos 
   ( archLogo
   , debianLogo
@@ -26,24 +33,25 @@ printLogo :: IO ()
 printLogo = do
     distroId <- idGet
     case distroId of
-        "arch"      -> archLogo
-        "slackware" -> slackwareLogo
-        "void"      -> voidLogo
-        "nixos"     -> nixosLogo
-        "ubuntu"    -> ubuntuLogo
-        "fedora"    -> fedoraLogo
-        "gentoo"    -> gentooLogo
-        "alpine"    -> alpineLogo
-        "artix"     -> artixLogo
-        "kali"      -> kaliLogo
-        "parrot"    -> parrotLogo
-        "mint"      -> mintLogo
-        "pty"   	-> ptyLogo
-        _           -> slackwareLogo
+        "arch\n"      -> archLogo
+        "slackware\n" -> slackwareLogo
+        "void\n"      -> voidLogo
+        "nixos\n"     -> nixosLogo
+        "ubuntu\n"    -> ubuntuLogo
+        "fedora\n"    -> fedoraLogo
+        "gentoo\n"    -> gentooLogo
+        "alpine\n"    -> alpineLogo
+        "artix\n"     -> artixLogo
+        "kali\n"      -> kaliLogo
+        "parrot\n"    -> parrotLogo
+        "mint\n"      -> mintLogo
+        "ptu\n"       -> ptyLogo
+        "buildx\n"    -> buildXLogo
+        _             -> linuxLogo
 
 printLogoWithColor :: Color -> [String] -> IO ()
 printLogoWithColor color linesOfLogo = do
-  setSGR [SetColor Foreground Dull color]
+  setSGR [SetColor Foreground Vivid color]
   mapM_ putStrLn linesOfLogo
   setSGR [Reset]
 
@@ -60,20 +68,34 @@ linuxLogo = printLogoWithColor White
 
 ptyLogo :: IO ()
 ptyLogo = printLogoWithColor Red
-    ["88\"\"Yb 888888 88   88    dP  dP\"Yb  .dP\"Y8"
+    [""
+    ,"88\"\"Yb 888888 88   88    dP  dP\"Yb  .dP\"Y8"
     ,"88__dP   88   88   88   dP  dP   Yb  Ybo."
     ,"88\"\"\"    88   Y8   8P  dP   Yb   dP o.`Y8b" 
     ,"88       88   `YbodP' dP     YbodP  8bodP'"
     ]
 
+ptyLogo = printLogoWithColor Cyan
+    [""
+    ,"$$$$$$$\\            $$\\ $$\\       $$\\ $$\\   $$\\" 
+    ,"$$  __$$\\           \\__|$$ |      $$ |$$ |  $$ |"
+    ,"$$ |  $$ |$$\\   $$\\ $$\\ $$ | $$$$$$$ |\\$$\\ $$  |"
+    ,"$$$$$$$\\ |$$ |  $$ |$$ |$$ |$$  __$$ | \\$$$$  /" 
+    ,"$$  __$$\\ $$ |  $$ |$$ |$$ |$$ /  $$ | $$  $$< " 
+    ,"$$ |  $$ |$$ |  $$ |$$ |$$ |$$ |  $$ |$$  /\\$$\\ "
+    ,"$$$$$$$  |\\$$$$$$  |$$ |$$ |\\$$$$$$$ |$$ /  $$ |"
+    ,"\\_______/  \\______/ \\__|\\__| \\_______|\\__|  \\__|"
+    ]
+
+
 archLogo :: IO ()
 archLogo = printLogoWithColor Cyan
-    ["__________                    .__      "
-    ,"\\ ______   \\ _____      ____   |  |__   "  
-    ," |       _/ \\ __  \\   _/ ___\\  |  |  \\  "
-    ," |    |   \\  / __ \\_ \\  \\___  |   Y  \\ "
-    ," |____|_  / (____  /  \\___  >  |___|  / "
-    ,"        \\/       \\/       \\/       \\/  "
+    ["__________                     .__      "
+    ,"\\ ______  \\  _____      ____   |  |__   "  
+    ," |       _/  \\ __ \\   _/ ___\\  |  |  \\  "
+    ," |    |   \\  / __ \\_  \\  \\___  |   Y  \\ "
+    ," |____|_  / (____  /   \\___  > |___|  / "
+    ,"        \\/       \\/        \\/       \\/  "
     ]
 
 debianLogo :: IO ()
@@ -87,20 +109,21 @@ debianLogo = printLogoWithColor Red
 
 slackwareLogo :: IO ()
 slackwareLogo = printLogoWithColor Blue
-  [ " _____                  _            "
-  , "/  ___|                | |           "
-  , "\\ `--.   _ __    __ _  | | __   __ _ "
-  , " `--. \\ | '__|  / _` | | |/ /  / _` |"
-  , "/\\__/ / | |    | (_| | |   <  | (_| |"
-  , "\\____/  |_|     \\__,_| |_|\\_\\  \\__,_|"
+  ["  _________.__                    __     __      __                         "
+  ," /   _____/|  |  _____     ____  |  | __/  \\    /  \\_____   _______   ____  "
+  ," \\_____  \\ |  |  \\__  \\  _/ ___\\ |  |/ /\\   \\/\\/   /\\__  \\  \\_  __ \\_/ __ \\ "
+  ," /        \\|  |__ / __ \\_\\  \\___ |    <  \\        /  / __ \\_ |  | \\/\\  ___/ "
+  ,"/_______  /|____/(____  / \\___  >|__|_ \\  \\__/\\  /  (____  / |__|    \\___  >"
+  ,"        \\/            \\/      \\/      \\/       \\/        \\/              \\/ "
   ]
 
 fedoraLogo :: IO ()
 fedoraLogo = printLogoWithColor Blue
-  [ "    _______ "
-  , "   /  ___/ "
-  , "  /  /__   "
-  , " /_____/   "
+  [ "    ______         __                "
+  , "   / ____/__  ____/ /___  _________ _"
+  , "  / /_  / _ \\/ __  / __ \\/ ___/ __ `/"
+  , " / __/ /  __/ /_/ / /_/ / /  / /_/ / "
+  , "/_/    \\___/\\__,_/\\____/_/   \\__,_/  "
   ]
 
 gentooLogo :: IO ()
@@ -129,7 +152,7 @@ alpineLogo = printLogoWithColor Cyan
   ]
 
 ubuntuLogo :: IO ()
-ubuntuLogo = printLogoWithColor Red
+ubuntuLogo = printLogoWithColor Yellow
   [ "   .--.   "
   , "  |o_o |  "
   , "  |:_/ |  "
