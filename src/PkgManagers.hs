@@ -8,7 +8,7 @@
 module PkgManagers where
 
 import System.Process
-import System.Directory (findExecutable)
+import System.Directory (findExecutable, emptyPermissions)
 import Data.Maybe (isJust) 
 
 checkPkgManager :: IO String
@@ -18,8 +18,10 @@ checkPkgManager = do
     dnf <- findExecutable "dnf"
     pacman <- findExecutable "pacman"
     zypper <- findExecutable "zypper"
-    slackpkg <- findExecutable "/usr/sbin/slackpkg"
+    slackpkg <- findExecutable "/sbin/installpkg"
     emerge <- findExecutable "emerge"
+    base <- findExecutable "base"
+    pure <- findExecutable "purepkg"
 
     return $ case () of 
         _ | isJust apt -> "apt"
@@ -28,4 +30,6 @@ checkPkgManager = do
           | isJust zypper -> "zypper"
           | isJust slackpkg -> "slackpkg"
           | isJust emerge -> "emerge"
+          | isJust base -> "base"
+          | isJust pure -> "purepkg"
           | otherwise -> "-"

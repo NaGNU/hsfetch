@@ -17,12 +17,13 @@ import Text.Printf (printf)
 hostnameGet, kernelGet, getRAM, distroGet, idGet, installDataGet, uptimeGet :: IO String 
 getListPkg :: String -> IO String
 
-getListPkg "apt" = return "422" -- readProcess "dpkg" ["--list"] ""
-getListPkg "dnf" = return "422" --  readProcess "dnf" ["list", "installed"] ""
-getListPkg "pacman" = return "422"-- readProcess "pacman" ["-Q"] ""
-getListPkg "zypper" = return "422"-- readProcess "zypper" ["se", "-i"] ""
+getListPkg "apt" = readProcess "dpkg" ["--list"] ""
+getListPkg "dnf" =  readProcess "dnf" ["list", "installed"] ""
+getListPkg "pacman" =  readProcess "pacman" ["-Q"] ""
+getListPkg "zypper" =  readProcess "zypper" ["se", "-i"] ""
 getListPkg "slackpkg" = readProcess "ls" ["/var/log/packages"] ""
 getListPkg "emerge" = readProcess "cat" ["/var/lib/portage/world"] ""
+getListPkg "base" = readProcess "base" [""] ""
 getListPkg _ = return "-"
 
 hostnameGet = readProcess "hostname" [] ""

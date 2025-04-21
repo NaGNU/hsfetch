@@ -23,7 +23,7 @@ main = do
 
     let (intensity, color) = colorGet idStr 
     
-    let ver = "1.2.1"
+    let ver = "1.2.1.1"
 
     printLogo
 
@@ -75,7 +75,6 @@ main = do
     putStr "Shell: "
     setSGR [SetColor Foreground Dull White]
     putStr shell
-	
 
     setSGR [SetColor Foreground intensity color]
     putStr "Rfetch: "
