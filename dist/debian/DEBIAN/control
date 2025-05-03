@@ -1,5 +1,0 @@
-Package: hsfetch
-Version: 1.3.0.0
-Architecture: amd64 
-Maintainer: ruzen42
-Description: A simple fetch in Haskell
