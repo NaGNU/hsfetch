@@ -14,15 +14,15 @@ import Data.List (isPrefixOf, isInfixOf)
 import System.Console.ANSI
 import Text.Printf (printf)
 
-hostnameGet, kernelGet, getRAM, distroGet, idGet, installDataGet, uptimeGet :: IO String 
+hostnameGet, shellGet, kernelGet, getRAM, distroGet, idGet, installDataGet, uptimeGet, usernameGet, pkgsNumGet:: IO String 
 getListPkg :: String -> IO String
 
 getListPkg "apt" = readProcess "dpkg" ["--list"] ""
 getListPkg "dnf" =  readProcess "dnf" ["list", "installed"] ""
 getListPkg "pacman" =  readProcess "pacman" ["-Q"] ""
 getListPkg "zypper" =  readProcess "zypper" ["se", "-i"] ""
-getListPkg "slackpkg" = readProcess "ls" ["/var/log/packages"] ""
-getListPkg "emerge" = readProcess "cat" ["/var/lib/portage/world"] ""
+getListPkg "slackpkg" = readProcess "sh" ["-c", " ls /var/log/packages | wc -l"] ""
+getListPkg "emerge" = readProcess "sh" ["-c", "ls /var/lib/portage/world | wc -l"] ""
 getListPkg "base" = readProcess "base" [""] ""
 getListPkg _ = return "-"
 
@@ -50,7 +50,7 @@ pkgsNumGet = do
     output <- getListPkg pkgManager
     if output == "-"
     then return "-"
-    else return $ show (length $ lines output) ++ "\n"
+    else return output
 
 shellGet = readProcess "sh" ["-c", "echo $SHELL"] ""
 
