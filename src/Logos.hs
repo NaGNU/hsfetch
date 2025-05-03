@@ -1,10 +1,15 @@
---  __________   _____           __           .__     
---  \______   \_/ ____\  ____  _/  |_   ____  |  |__  
---   |       _/\   __\ _/ __ \ \   __\_/ ___\ |  |  \ 
---   |    |   \ |  |   \  ___/  |  |  \  \___ |   Y  \
---   |____|_  / |__|    \___  > |__|   \___  >|___|  /
---          \/              \/             \/      \/ 
---          
+--   __    __  ______   ______           __              __       
+--  |  \  |  \/      \ /      \         |  \            |  \      
+--  | $$  | $|  $$$$$$|  $$$$$$\______ _| $$_    _______| $$____  
+--  | $$__| $| $$___\$| $$_  \$/      |   $$ \  /       | $$    \ 
+--  | $$    $$\$$    \| $$ \  |  $$$$$$\$$$$$$ |  $$$$$$| $$$$$$$\
+--  | $$$$$$$$_\$$$$$$| $$$$  | $$    $$| $$ __| $$     | $$  | $$
+--  | $$  | $|  \__| $| $$    | $$$$$$$$| $$|  | $$_____| $$  | $$
+--  | $$  | $$\$$    $| $$     \$$     \ \$$  $$\$$     | $$  | $$
+--  \ $$   \$$ \$$$$$$ \$$     \$$$$$$$  \$$$$  \$$$$$$$\ $$   \$$
+--                                                                
+--                                                                
+--                                                                        
 module Logos 
   ( archLogo
   , debianLogo
@@ -22,6 +27,7 @@ module Logos
   , endeavourLogo
   , mintLogo
   , linuxLogo
+  , nurosLogo
   , printLogoWithColor
   , printLogo
   ) where
@@ -36,6 +42,7 @@ printLogo = do
         "arch\n"      -> archLogo
         "slackware\n" -> slackwareLogo
         "void\n"      -> voidLogo
+        "nuros\n"     -> nurosLogo
         "nixos\n"     -> nixosLogo
         "ubuntu\n"    -> ubuntuLogo
         "fedora\n"    -> fedoraLogo
@@ -51,9 +58,23 @@ printLogo = do
 
 printLogoWithColor :: Color -> [String] -> IO ()
 printLogoWithColor color linesOfLogo = do
-  setSGR [SetColor Foreground Vivid color]
+  setSGR [SetColor Foreground Dull color]
   mapM_ putStrLn linesOfLogo
   setSGR [Reset]
+
+
+nurosLogo :: IO ()
+nurosLogo = printLogoWithColor Blue
+  [ " __    __                    ______   ______  "
+  , "/  \\  /  |                  /      \\ /      \\ "
+  , "$$  \\ $$ |__    __  ______ /$$$$$$  /$$$$$$  |"
+  , "$$$  \\$$ /  |  /  |/      \\$$ |  $$ $$ \\__$$/ "
+  , "$$$$  $$ $$ |  $$ /$$$$$$  $$ |  $$ $$      \\ "
+  , "$$ $$ $$ $$ |  $$ $$ |  $$/$$ |  $$ |$$$$$$  |"
+  , "$$ |$$$$ $$ \\__$$ $$ |     $$ \\__$$ /  \\__$$ |"
+  , "$$ | $$$ $$    $$/$$ |     $$    $$/$$    $$/ "
+  , "$$/   $$/ $$$$$$/ $$/       $$$$$$/  $$$$$$/  "
+  ]
 
 linuxLogo :: IO ()
 linuxLogo = printLogoWithColor White
@@ -109,14 +130,12 @@ debianLogo = printLogoWithColor Red
 
 slackwareLogo :: IO ()
 slackwareLogo = printLogoWithColor Blue
-  ["  _________.__                    __     __      __                         "
-  ," /   _____/|  |  _____     ____  |  | __/  \\    /  \\_____   _______   ____  "
-  ," \\_____  \\ |  |  \\__  \\  _/ ___\\ |  |/ /\\   \\/\\/   /\\__  \\  \\_  __ \\_/ __ \\ "
-  ," /        \\|  |__ / __ \\_\\  \\___ |    <  \\        /  / __ \\_ |  | \\/\\  ___/ "
-  ,"/_______  /|____/(____  / \\___  >|__|_ \\  \\__/\\  /  (____  / |__|    \\___  >"
-  ,"        \\/            \\/      \\/      \\/       \\/        \\/              \\/ "
+  [ "   _____ __           __  _       __              "
+  , "  / ___// ____ ______/ /_| |     / ____ _________ "
+  , "  \\__ \\/ / __ `/ ___/ //_| | /| / / __ `/ ___/ _ \\"
+  , " ___/ / / /_/ / /__/ ,<  | |/ |/ / /_/ / /  /  __/"
+  , "/____/_/\\__,_/\\___/_/|_| |__/|__/\\__,_/_/   \\___/ "
   ]
-
 fedoraLogo :: IO ()
 fedoraLogo = printLogoWithColor Blue
   [ "    ______         __                "

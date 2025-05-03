@@ -63,17 +63,18 @@ idGet = readProcess "sh" ["-c", ". /etc/os-release && echo $ID"] ""
 
 colorGet :: String -> (ColorIntensity, Color) 
 colorGet id = case id of
-    "slackware\n"  -> (Vivid, Blue) 
-    "buildx\n"     -> (Vivid, Cyan) 
-    "ptu\n"        -> (Vivid, Red) 
+    "slackware\n"  -> (Dull, Blue) 
+    "nuros\n"      -> (Dull, Blue) 
+    "buildx\n"     -> (Dull, Cyan) 
+    "ptu\n"        -> (Dull, Red) 
     "arch\n"       -> (Dull, Cyan) 
-    "fedora\n"     -> (Vivid, Blue)
-    "void\n"       -> (Vivid, Green)
-    "gentoo\n"     -> (Vivid, Magenta)
+    "fedora\n"     -> (Dull, Blue)
+    "void\n"       -> (Dull, Green)
+    "gentoo\n"     -> (Dull, Magenta)
     "artix\n"      -> (Dull, Cyan)
     "mint\n"       -> (Dull, Green)
-    "debian\n"     -> (Vivid, Red)
-    "ubuntu\n"     -> (Vivid, Yellow)
+    "debian\n"     -> (Dull, Red)
+    "ubuntu\n"     -> (Dull, Yellow)
     _              -> (Dull, White) 
 
 installDataGet = do

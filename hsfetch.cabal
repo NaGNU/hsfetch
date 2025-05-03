@@ -57,7 +57,7 @@ extra-doc-files:    CHANGELOG.md
 common warnings
     ghc-options: -Wall -O0 -threaded
 
-executable rfetch
+executable hsfetch
     -- Import common warning flags.
     import:           warnings
 
