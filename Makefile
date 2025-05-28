@@ -8,7 +8,7 @@ clean:
 	@echo Cleaning...
 	@cabal clean
 
-install: all 
+install: 
 	@echo Installing...
 	@install -m755 hsfetch /usr/local/bin/hsfetch
 
