@@ -20,13 +20,13 @@ name:               hsfetch
 -- PVP summary:     +-+------- breaking API changes
 --                  | | +----- non-breaking API additions
 --                  | | | +--- code changes with no API change
-version:            1.3.0.0
+version:            1.3.1.0
 
 -- A short (one-line) description of the package.
 -- synopsis:
 
 -- A longer description of the package.
--- description:
+description: fastfetch on Haskell
 
 -- URL for the project homepage or repository.
 homepage:           https://github.com/nagnu/hsfetch
@@ -55,7 +55,7 @@ extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
 common warnings
-    ghc-options: -Wall -O0 -threaded
+    ghc-options: -O3 -threaded
 
 executable hsfetch
     -- Import common warning flags.

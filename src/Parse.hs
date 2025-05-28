@@ -86,15 +86,18 @@ installDataGet = do
 wordsBySpace :: String -> [String]
 wordsBySpace = words
 
+formatUptime :: Int -> String
+formatUptime totalSeconds =
+    let (days, remainder) = totalSeconds `divMod` (60 * 60 * 24)
+        (hours, remainder2) = remainder `divMod` (60 * 60)
+        (minutes, _) = remainder2 `divMod` 60
+    in printf "%d days, %02d hours, %02d minutes" days hours minutes
+
 uptimeGet = do
     uptimeStr <- readFile "/proc/uptime"
     let uptimeSeconds = read (head (words uptimeStr)) :: Double
         totalSeconds = floor uptimeSeconds :: Int
-        (days, remainder) = totalSeconds `divMod` (60 * 60 * 24)
-        (hours, remainder2) = remainder `divMod` (60 * 60)
-        (minutes, _) = remainder2 `divMod` 60
-    return $ printf "%d days, %02d hours, %02d minutes" days hours minutes
-
+    return $ formatUptime totalSeconds
 
 trim :: String -> String
 trim = f . f

@@ -9,75 +9,60 @@ import System.Console.ANSI
 import Parse
 import Logos
 
+putStrColor :: String -> ColorIntensity -> Color -> IO ()
+putStrColor string intensity color = do
+  setSGR [SetColor Foreground intensity color]
+  putStr string 
+  setSGR [SetColor Foreground Dull White]
+
 main :: IO ()
 main = do
-    kernel <- kernelGet
-    ram <- getRAM
-    distro <- distroGet
-    pkgs <- pkgsNumGet
-    shell <- shellGet
-    cpu <- cpuGet
-    idStr <- idGet
+    kernel      <- kernelGet
+    ram         <- getRAM
+    distro      <- distroGet
+    pkgs        <- pkgsNumGet
+    shell       <- shellGet
+    cpu         <- cpuGet
+    idStr       <- idGet
     installDate <- installDataGet
-    uptime <- uptimeGet
+    uptime      <- uptimeGet
+    wm          <- wmGet
 
     let (intensity, color) = colorGet idStr 
     
-    let ver = "1.3.0.0"
+    let ver = "1.3.1.0"
 
     printLogo
 
     putStrLn ""
 
-    setSGR [SetColor Foreground intensity color]
-    putStr "OS: "
-    setSGR [SetColor Foreground Dull White]
+    putStrColor "OS: " intensity color
     putStr distro 
 
-    setSGR [SetColor Foreground intensity color]
-    putStr "CPU: "
-    setSGR [SetColor Foreground Dull White]
+    putStrColor "CPU: " intensity color
     putStrLn cpu
 
-
-    setSGR [SetColor Foreground intensity color]
-    putStr "RAM: "
-    setSGR [SetColor Foreground Dull White]
+    putStrColor "RAM: " intensity color
     putStrLn ram
-
-
-    setSGR [SetColor Foreground intensity color]
-    putStr "Uptime: "
-    setSGR [SetColor Foreground Dull White]
+    
+    putStrColor "UPTIME: " intensity color
     putStrLn uptime
     
-    setSGR [SetColor Foreground intensity color]
-    putStr "Window Manager: "
-    setSGR [SetColor Foreground Dull White]
-    wmGet >>= putStrLn
+    putStrColor "WM: " intensity color
+    putStrLn wm
 
-    setSGR [SetColor Foreground intensity color]
-    putStr "Packages: "
-    setSGR [SetColor Foreground Dull White]
+    putStrColor "PKGS: " intensity color
     putStr pkgs
 
-    setSGR [SetColor Foreground intensity color]
-    putStr "Install Date: "
-    setSGR [SetColor Foreground Dull White]
+    putStrColor "Install data: " intensity color
     putStrLn installDate
 
-    setSGR [SetColor Foreground intensity color]
-    putStr "Kernel: "
-    setSGR [SetColor Foreground Dull White]
+    putStrColor "Kernel: " intensity color
     putStr kernel
 
-    setSGR [SetColor Foreground intensity color]
-    putStr "Shell: "
-    setSGR [SetColor Foreground Dull White]
+    putStrColor "Shell: " intensity color
     putStr shell
 
-    setSGR [SetColor Foreground intensity color]
-    putStr "HSfetch: "
-    setSGR [SetColor Foreground Dull White]
+    putStrColor "HSFetch: " intensity color
     putStrLn ver
 
