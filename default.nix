@@ -10,7 +10,7 @@ mkDerivation {
   executableHaskellDepends = [
     ansi-terminal base directory parsec process yaml
   ];
-  homepage = "https://github.com/nagnu/hsfetch";
+  homepage = "https://github.com/NaGNU/hsfetch";
   license = lib.licenses.gpl3Plus;
   mainProgram = "hsfetch";
 }

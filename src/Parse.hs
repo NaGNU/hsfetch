@@ -18,7 +18,7 @@ hostnameGet, shellGet, kernelGet, getRAM, distroGet, idGet, installDataGet, upti
 getListPkg :: String -> IO String
 
 getListPkg "apt" = readProcess "dpkg" ["--list"] ""
-getListPkg "dnf" =  readProcess "dnf" ["list", "installed"] ""
+getListPkg "dnf" = readProcess "sh" ["-c", " dnf list --installed | wc -l"] ""
 getListPkg "pacman" =  readProcess "pacman" ["-Q"] ""
 getListPkg "zypper" =  readProcess "zypper" ["se", "-i"] ""
 getListPkg "slackpkg" = readProcess "sh" ["-c", " ls /var/log/packages | wc -l"] ""
