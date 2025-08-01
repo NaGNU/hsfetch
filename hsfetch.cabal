@@ -73,7 +73,7 @@ executable hsfetch
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.19.2.0
+    build-depends:    base >=4.21
                     , directory
                     , process
                     , ansi-terminal
