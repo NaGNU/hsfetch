@@ -8,6 +8,8 @@
 import System.Console.ANSI
 import Parse
 import Logos
+import Control.Concurrent.Async (mapConcurrently, concurrently)
+import Control.Exception (evaluate)
 
 putStrColor :: String -> ColorIntensity -> Color -> IO ()
 putStrColor string intensity color = do
@@ -15,27 +17,68 @@ putStrColor string intensity color = do
   putStr string 
   setSGR [SetColor Foreground Dull White]
 
+fetchAllData :: IO (String, String, String, String, String, String, String, String, String, String)
+fetchAllData = do
+    (kernel, ram, distro, pkgs, shell, cpu, idStr, installDate, uptime, wm) <-
+        concurrently
+            (concurrently kernelGet getRAM)
+            (concurrently distroGet pkgsNumGet)
+        `concurrently`
+            (concurrently shellGet cpuGet)
+        `concurrently`
+            (concurrently idGet installDataGet)
+        `concurrently`
+            (concurrently uptimeGet wmGet)
+    
+    return (kernel, ram, distro, pkgs, shell, cpu, idStr, installDate, uptime, wm)
+
+
+fetchAllDataGrouped :: IO (String, String, String, String, String, String, String, String, String, String)
+fetchAllDataGrouped = do
+    -- Группируем независимые операции
+    ((kernel, ram), (distro, pkgs), (shell, cpu), (idStr, installDate), (uptime, wm)) <-
+        concurrently
+            (concurrently kernelGet getRAM)
+            (concurrently distroGet pkgsNumGet)
+        `concurrently`
+            (concurrently shellGet cpuGet)
+        `concurrently`
+            (concurrently idGet installDataGet)
+        `concurrently`
+            (concurrently uptimeGet wmGet)
+    
+    return (kernel, ram, distro, pkgs, shell, cpu, idStr, installDate, uptime, wm)
+
+
+fetchAllDataParallel :: IO (String, String, String, String, String, String, String, String, String, String)
+fetchAllDataParallel = do
+    [kernel, ram, distro, pkgs, shell, cpu, idStr, installDate, uptime, wm] <-
+        mapConcurrently evaluate
+            [ kernelGet
+            , getRAM
+            , distroGet
+            , pkgsNumGet
+            , shellGet
+            , cpuGet
+            , idGet
+            , installDataGet
+            , uptimeGet
+            , wmGet
+            ]
+    
+    return (kernel, ram, distro, pkgs, shell, cpu, idStr, installDate, uptime, wm)
+
 main :: IO ()
 main = do
-    kernel      <- kernelGet
-    ram         <- getRAM
-    distro      <- distroGet
-    pkgs        <- pkgsNumGet
-    shell       <- shellGet
-    cpu         <- cpuGet
-    idStr       <- idGet
-    installDate <- installDataGet
-    uptime      <- uptimeGet
-    wm          <- wmGet
-
-    let (intensity, color) = colorGet idStr 
+    (kernel, ram, distro, pkgs, shell, cpu, idStr, installDate, uptime, wm) <- fetchAllData
     
+    let (intensity, color) = colorGet idStr 
     let ver = "1.3.1.0"
 
     printLogo
-
     putStrLn ""
 
+    -- Выводим результаты
     putStrColor "OS: " intensity color
     putStr distro 
 
@@ -65,4 +108,3 @@ main = do
 
     putStrColor "HSFetch: " intensity color
     putStrLn ver
-
